@@ -56,4 +56,4 @@ def test_create_item():
     assert data["id"] == 999
     assert data["name"] == name
     assert data["description"] == description
-    assert data["created"] == True
+    assert data["created"]
