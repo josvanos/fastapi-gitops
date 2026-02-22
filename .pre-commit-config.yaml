@@ -1,5 +1,43 @@
+# Used https://pre-commit.com/hooks.html
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
+      # To prevent committing large files
+      - id: check-added-large-files
+
+      # To check YAML files for syntax errors (excluding Helm charts)
+      - id: check-yaml
+        exclude: ^helm/
+
+      # To check code style
       - id: trailing-whitespace
+      - id: end-of-file-fixer
+
+      # To check for security issues
+      - id: detect-private-key
+
+  # To sort imports in Python files
+  - repo: https://github.com/pycqa/isort
+    rev: 8.0.0
+    hooks:
+      - id: isort
+
+  # To check for security issues
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.9.3
+    hooks:
+      - id: bandit
+        exclude: ^tests/
+
+  # To check code style
+  - repo: https://github.com/psf/black
+    rev: 26.1.0
+    hooks:
+      - id: black
+
+  # To make sure we do not commit secrets
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
