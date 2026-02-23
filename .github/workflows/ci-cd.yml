@@ -67,7 +67,7 @@ jobs:
 
       - name: Docker build
         if: github.event_name == 'push'
-        run: docker build -t fastapi-gitops-starter .
+        run: docker build -t fastapi-gitops-starter .  --platform linux/amd64
 
       # Documentation: https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images#publishing-images-to-github-packages
       - name: Log in to the Container registry
@@ -90,6 +90,7 @@ jobs:
         id: push
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
+          platforms: linux/amd64
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
