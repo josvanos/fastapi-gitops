@@ -92,6 +92,7 @@ jobs:
         with:
           platforms: linux/arm64
           context: .
+          file: ./docker/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
